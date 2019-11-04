@@ -1,16 +1,12 @@
-import { Component } from '@angular/core';
-import { APIService } from './api-service.service';
+import { Component, OnInit } from '@angular/core';
+import { APIService } from '../api-service.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-first',
+  templateUrl: './first.component.html',
+  styleUrls: ['./first.component.css']
 })
-export class AppComponent {
-  title = 'fe';
-  /**
-   *
-   */
+export class FirstComponent implements OnInit {
   constructor(private _apiService: APIService) {
     this.demo();
   }
@@ -31,4 +27,8 @@ export class AppComponent {
       }
     });
   }
+
+  ngOnInit() {
+  }
+
 }

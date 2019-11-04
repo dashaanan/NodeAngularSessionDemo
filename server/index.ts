@@ -74,16 +74,17 @@ var sessionChecker = (req: { headers: { [x: string]: any; }; token: any; }, res:
 
 app.post('/Process', sessionChecker, (req: { token: any; session: any; body: { istrModel: any; iobjClientModel: any; ienmOperation: any; iobjCustomMethodInfo: any; }; }, res: { send: (arg0: any) => void; }) => {
   console.log(req.session.id);
-  if (req.session && req.session.user) {
+  if (req.session && req.session.views) {
     console.log("HollaHoop");
-    console.log(req.session.user);
+    req.session.views++;
+    console.log('TotalViews' + req.session.views);
     
   }
   else {
-    req.session.user = { name: "demo1", id: 1 };
-    console.log(req.session.user);
+    req.session.views = 1;
+    console.log(req.session.views);
   }
-  return res.send(req.session.user);
+  return res.send('TotalViews' + req.session.views);
 
 });
 // route for Home-Page

@@ -67,15 +67,16 @@ var sessionChecker = function (req, res, next) {
 };
 app.post('/Process', sessionChecker, function (req, res) {
     console.log(req.session.id);
-    if (req.session && req.session.user) {
+    if (req.session && req.session.views) {
         console.log("HollaHoop");
-        console.log(req.session.user);
+        req.session.views++;
+        console.log('TotalViews' + req.session.views);
     }
     else {
-        req.session.user = { name: "demo1", id: 1 };
-        console.log(req.session.user);
+        req.session.views = 1;
+        console.log(req.session.views);
     }
-    return res.send(req.session.user);
+    return res.send('TotalViews' + req.session.views);
 });
 // route for Home-Page
 app.get('/', function (req, res) {
